@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Play, Pause, Music, ChevronRight, ChevronLeft, MapPin, Camera, Star, Heart, Quote, Calendar, Utensils } from 'lucide-react';
+import { 
+  Play, Pause, Music, ChevronRight, ChevronLeft, 
+  MapPin, Camera, Star, Heart, Quote, Calendar, Utensils,
+  Volume2, VolumeX 
+} from 'lucide-react';
 
 // --- 資料內容設定 (在此處修改文字與圖片) ---
-// 使用說明：
-// 1. 搜尋 "https://via.placeholder.com" 並將其替換為你真實照片的 URL (例如: ./images/photo1.jpg)
-// 2. 音樂部分在程式碼最下方，搜尋 "audio" 標籤進行設定。
 
 const SLIDES_DATA = [
   {
@@ -14,7 +15,7 @@ const SLIDES_DATA = [
     keywords: ['變動', '覺察', '陪伴'],
     description: '這一年大家都在尋找更適合自己的位置，無論是工作、學業還是心理狀態。雖然充滿了迷惘與焦慮，但你們始終是彼此最穩固的安全堡壘。',
     bgColor: 'from-purple-900 via-indigo-900 to-black',
-    image: null // 首頁背景圖可在此加入
+    image: null 
   },
   {
     type: 'member',
@@ -77,6 +78,7 @@ const SLIDES_DATA = [
       { date: '3/9', title: '1010 湘餐廳', desc: '信義區攝影展午餐' },
       { date: '3/31', title: 'CityLink 港式飲茶', desc: '慶祝秉琛離職自由身' },
       { date: '5/15', title: '六品小館', desc: '張適生日' },
+      { date: '5/30', title: '樹懶國秉琛家', desc: '端午包南部粽大會' },
       { date: '7/16', title: '岡心食堂', desc: '秉琛生日日式料理' },
       { date: '8/11', title: '史坦利美式牛排', desc: '秉琛新工作上工慶祝' }
     ]
@@ -136,13 +138,13 @@ const ImagePlaceholder = ({ label, height = "h-64" }) => (
     <span className="text-sm font-medium">{label}</span>
     <span className="text-xs mt-1 text-white/30">請替換為真實照片 (img src)</span>
     {/* 實際使用時，請取消下方註釋並放入真實圖片 URL */}
-    {/* <img src="your-image-url.jpg" alt={label} className="absolute inset-0 w-full h-full object-cover opacity-80" /> */}
+    {/* <img src="/cover.jpg" alt={label} className="absolute inset-0 w-full h-full object-cover opacity-80" /> */}
   </div>
 );
 
 const ProgressBar = ({ count, current, isPaused }) => {
   return (
-    <div className="absolute top-0 left-0 w-full flex gap-1 p-2 z-50">
+    <div className="absolute top-0 left-0 w-full flex gap-1 p-2 z-[60] safe-top">
       {Array.from({ length: count }).map((_, idx) => (
         <div key={idx} className="h-1 flex-1 bg-white/30 rounded-full overflow-hidden">
           <div 
@@ -162,7 +164,7 @@ const ProgressBar = ({ count, current, isPaused }) => {
 };
 
 const CoverSlide = ({ data }) => (
-  <div className="flex flex-col items-center justify-center h-full text-center px-6 animate-fade-in">
+  <div className="flex flex-col items-center justify-center h-full text-center px-6 animate-fade-in pt-10">
     <div className="mb-8 relative">
       <Star className="w-16 h-16 text-yellow-400 absolute -top-8 -right-8 animate-pulse" />
       <h1 className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 to-pink-200 mb-2">
@@ -188,7 +190,7 @@ const CoverSlide = ({ data }) => (
 );
 
 const MemberSlide = ({ data }) => (
-  <div className="flex flex-col h-full px-5 pt-16 pb-20 animate-slide-up overflow-y-auto hide-scrollbar">
+  <div className="flex flex-col h-full px-5 pt-20 pb-20 animate-slide-up overflow-y-auto hide-scrollbar">
     <div className="flex items-center gap-4 mb-6">
       <div className={`w-20 h-20 rounded-full bg-gradient-to-br ${data.bgColor} border-4 border-white/20 flex items-center justify-center shadow-2xl shrink-0`}>
         <span className="text-3xl">👤</span>
@@ -217,7 +219,7 @@ const MemberSlide = ({ data }) => (
 );
 
 const ListSlide = ({ data }) => (
-  <div className="flex flex-col h-full px-5 pt-16 pb-20 animate-fade-in overflow-y-auto hide-scrollbar">
+  <div className="flex flex-col h-full px-5 pt-20 pb-20 animate-fade-in overflow-y-auto hide-scrollbar">
     <h2 className="text-3xl font-bold text-white mb-1 flex items-center gap-2">
       {data.title}
     </h2>
@@ -245,7 +247,7 @@ const ListSlide = ({ data }) => (
 );
 
 const MemoriesSlide = ({ data }) => (
-  <div className="flex flex-col h-full px-5 pt-16 pb-20 animate-slide-up overflow-y-auto hide-scrollbar">
+  <div className="flex flex-col h-full px-5 pt-20 pb-20 animate-slide-up overflow-y-auto hide-scrollbar">
     <h2 className="text-3xl font-bold text-white mb-6 text-center shadow-text">{data.title}</h2>
     
     <div className="grid grid-cols-1 gap-4">
@@ -275,7 +277,7 @@ const MemoriesSlide = ({ data }) => (
 );
 
 const QuotesSlide = ({ data }) => (
-  <div className="flex flex-col h-full px-6 pt-16 pb-20 justify-center animate-zoom-in">
+  <div className="flex flex-col h-full px-6 pt-20 pb-20 justify-center animate-zoom-in">
     <h2 className="text-3xl font-bold text-white mb-8 text-center">{data.title}</h2>
     
     <div className="space-y-6">
@@ -300,7 +302,7 @@ const QuotesSlide = ({ data }) => (
 );
 
 const FutureSlide = ({ data }) => (
-  <div className="flex flex-col h-full px-5 pt-16 pb-20 animate-fade-in overflow-y-auto hide-scrollbar">
+  <div className="flex flex-col h-full px-5 pt-20 pb-20 animate-fade-in overflow-y-auto hide-scrollbar">
     <h2 className="text-3xl font-bold text-white mb-6 flex items-center gap-2">
        <Star className="text-yellow-400 fill-current" /> {data.title}
     </h2>
@@ -323,7 +325,7 @@ const FutureSlide = ({ data }) => (
 );
 
 const InteractiveSlide = ({ data }) => (
-  <div className="flex flex-col h-full px-5 pt-16 pb-20 animate-slide-up">
+  <div className="flex flex-col h-full px-5 pt-20 pb-20 animate-slide-up">
     <h2 className="text-3xl font-bold text-white mb-2 text-center">{data.title}</h2>
     <p className="text-white/50 text-center mb-8 text-sm">截圖此頁面，寫下你的答案分享到群組！</p>
 
@@ -356,8 +358,10 @@ export default function App() {
 
   const totalSlides = SLIDES_DATA.length;
 
+  // 定時器邏輯
   useEffect(() => {
     let timer;
+    // 只有在 "非暫停" 狀態且不是最後一張時才計時
     if (!isPaused && currentSlide < totalSlides) {
       timer = setTimeout(() => {
         handleNext();
@@ -385,6 +389,10 @@ export default function App() {
     }
   };
 
+  // 統一處理暫停與播放
+  const handlePause = () => setIsPaused(true);
+  const handleResume = () => setIsPaused(false);
+
   const currentData = SLIDES_DATA[currentSlide];
 
   // 動態渲染對應類型的 Slide
@@ -402,9 +410,15 @@ export default function App() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-900 font-sans text-white">
-      {/* 手機外框模擬 (在電腦上看起來更好) */}
-      <div className="w-full max-w-md h-[100dvh] md:h-[850px] md:rounded-3xl relative overflow-hidden shadow-2xl bg-black">
+    // 外層容器：
+    // 手機版 (default)：bg-black w-screen h-screen overflow-hidden (去除所有 margin/padding)
+    // 電腦版 (md)：min-h-screen bg-gray-900 flex center
+    <div className="bg-black w-screen h-screen overflow-hidden md:flex md:items-center md:justify-center md:min-h-screen md:bg-gray-900 font-sans text-white">
+      
+      {/* 手機外框模擬 */}
+      {/* 手機版：fixed inset-0 (強制填滿) */}
+      {/* 電腦版：relative w-full max-w-md h-[850px] rounded-3xl */}
+      <div className="fixed inset-0 md:relative md:w-full md:max-w-md md:h-[850px] md:inset-auto md:rounded-3xl overflow-hidden shadow-2xl bg-black">
         
         {/* 背景漸層 */}
         <div className={`absolute inset-0 bg-gradient-to-br ${currentData.bgColor} transition-colors duration-1000 ease-in-out`}></div>
@@ -412,41 +426,43 @@ export default function App() {
         {/* 雜訊質感 (Noise Overlay) */}
         <div className="absolute inset-0 opacity-10 pointer-events-none" style={{backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`}}></div>
 
-        {/* 頂部進度條 */}
+        {/* 頂部進度條 (z-index 60, 高於觸控層) */}
         <ProgressBar count={totalSlides} current={currentSlide} isPaused={isPaused} />
 
-        {/* 主要內容區域 */}
-        <div 
-          className="relative h-full w-full z-10"
-          onTouchStart={() => setIsPaused(true)}
-          onTouchEnd={() => setIsPaused(false)}
-          onMouseDown={() => setIsPaused(true)}
-          onMouseUp={() => setIsPaused(false)}
-        >
+        {/* 音樂按鈕 (右上角, z-index 60) */}
+        <button 
+             onClick={(e) => { e.stopPropagation(); togglePlay(); }}
+             className={`absolute top-8 right-4 z-[60] p-3 rounded-full backdrop-blur-md border border-white/20 shadow-lg transition-all active:scale-95 ${isPlaying ? 'bg-white/20 text-white animate-pulse' : 'bg-black/20 text-white/50'}`}
+           >
+             {isPlaying ? <Volume2 size={24} /> : <VolumeX size={24} />}
+        </button>
+
+        {/* 主要內容區域 (z-10) */}
+        <div className="relative h-full w-full z-10 pt-safe">
           {renderSlideContent()}
         </div>
 
-        {/* 導航點擊區域 (隱形) */}
-        <div className="absolute inset-0 z-20 flex">
-          <div className="w-1/3 h-full" onClick={handlePrev}></div>
-          <div className="w-2/3 h-full" onClick={handleNext}></div>
+        {/* 導航與觸控層 (z-20) */}
+        {/* 將長按暫停邏輯 (onTouchStart/End, onMouseDown/Up) 移到這個最上層的遮罩
+            確保不會被下層的元素擋住事件。
+        */}
+        <div 
+          className="absolute inset-0 z-20 flex"
+          onTouchStart={handlePause}
+          onTouchEnd={handleResume}
+          onMouseDown={handlePause}
+          onMouseUp={handleResume}
+        >
+          {/* 左側 30% 點擊上一頁 */}
+          <div className="w-[30%] h-full" onClick={(e) => { e.stopPropagation(); handlePrev(); }}></div>
+          {/* 右側 70% 點擊下一頁 */}
+          <div className="w-[70%] h-full" onClick={(e) => { e.stopPropagation(); handleNext(); }}></div>
         </div>
 
-        {/* 底部控制器 */}
-        <div className="absolute bottom-6 right-6 z-30 flex gap-4">
-           {/* 音樂按鈕 */}
-           <button 
-             onClick={(e) => { e.stopPropagation(); togglePlay(); }}
-             className={`p-3 rounded-full backdrop-blur-md border border-white/20 shadow-lg transition-all ${isPlaying ? 'bg-green-500/80 text-white animate-spin-slow' : 'bg-black/40 text-white/70'}`}
-           >
-             {isPlaying ? <Music size={20} /> : <Play size={20} />}
-           </button>
-           
-           {/* 隱藏的音訊標籤 - 請在此處 src 填入音樂 URL */}
-           <audio ref={audioRef} loop>
+        {/* 隱藏的音訊標籤 - 請在此處 src 填入音樂 URL */}
+        <audio ref={audioRef} loop>
              <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg" />
-           </audio>
-        </div>
+        </audio>
 
       </div>
 
@@ -455,6 +471,14 @@ export default function App() {
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
+        /* 處理 iOS Safe Area */
+        .pt-safe {
+          padding-top: env(safe-area-inset-top, 20px);
+        }
+        .safe-top {
+          top: env(safe-area-inset-top, 0px);
+        }
+
         @keyframes progress { from { width: 0%; } to { width: 100%; } }
         .animate-progress { animation-name: progress; animation-timing-function: linear; }
         
