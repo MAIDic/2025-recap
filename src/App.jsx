@@ -110,6 +110,7 @@ const SLIDES_DATA = [
     bgColor: 'from-gray-800 via-slate-900 to-black',
     image: null,
     cloud: ['無限城', '照片', '無慘', '琵琶女', '所長', '研究所', '推甄', '覺察', '寶可夢','家庭','今天','情緒','學長'],
+    // 金句改為物件陣列，依時間排序
     quotes: [
       { text: '「朋友離職撐下去的理由又少一個」', author: '徐秉琛', time: '2024/12/6 15:18' },
       { text: '「現代人太需要可愛療癒物了」', author: '張 適📷🌎', time: '2024/12/10 09:52' },
@@ -230,7 +231,8 @@ const ChatLayout = ({ title, children, showInput = true }) => {
   return (
     <div className="flex flex-col h-full relative z-10 bg-[#1e1e1e] font-sans">
       {/* Header */}
-      <div className="h-16 bg-[#2b2b2b]/90 backdrop-blur-md flex items-center justify-between px-4 border-b border-gray-700 pt-safe mt-6 md:mt-0 z-30 shrink-0">
+      {/* 修改：移除 mt-6，保留 pt-safe，讓標題列正確頂到螢幕最上方，且內容避開劉海 */}
+      <div className="h-16 bg-[#2b2b2b]/90 backdrop-blur-md flex items-center justify-between px-4 border-b border-gray-700 pt-safe z-30 shrink-0 box-content">
         <div className="flex items-center gap-3">
           <ArrowLeft className="text-white w-6 h-6" />
           <div>
@@ -510,7 +512,6 @@ const MemoryStorySlide = ({ data, subIndex }) => {
   );
 };
 
-// 修改：接收 subIndex 作為 props
 const KeywordCloudSlide = ({ data, subIndex }) => {
   // 使用 subIndex 作為顯示進度
   const currentQuoteIndex = subIndex; 
