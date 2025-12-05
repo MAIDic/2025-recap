@@ -649,7 +649,7 @@ const AwardsSlide = ({ data, subIndex }) => {
 
 const InteractiveSlide = ({ data, onRestart }) => {
   const handleCopy = () => {
-    const textToCopy = `2025 回顧與 2026 展望\n【關於 2025】\n1.今年最讓你印象深刻的一件事是？\n2.今年最想感謝自己的一件事？\n3.用一個詞形容你的 2025：\n【關於 2026】\n1.給「歐劍諮商所」還有自己的一句話（也許是感謝，也許是期許）：\n2.對2026有甚麼期待：\n3.明年就是第四屆期初社大的十周年了，有甚麼特別想做的活動嗎：`;
+    const textToCopy = `2025 回顧與 2026 展望\n【關於 2025】\n1.今年最讓你印象深刻的事是？\n2.今年最想感謝的一件事？\n3.用一個詞形容你的 2025：\n【關於 2026】\n1.給「歐劍諮商所」的一句話：\n2.對2026的「歐劍諮商所」有甚麼期待：\n3.明年就是第四屆期初社大的十周年了，有甚麼特別想做的活動嗎：`;
 
     const textArea = document.createElement("textarea");
     textArea.value = textToCopy;
@@ -700,17 +700,17 @@ const InteractiveSlide = ({ data, onRestart }) => {
                 <div>
                   <p className="text-[#64b5f6] font-bold mb-1">【關於 2025】</p>
                   <ul className="list-decimal list-inside space-y-1 pl-1">
-                    <li>今年最讓你印象深刻的一件事是？</li>
-                    <li>今年最想感謝自己的一件事？</li>
+                    <li>今年最讓你印象深刻的事是？</li>
+                    <li>今年最想感謝的一件事？</li>
                     <li>用一個詞形容你的 2025：</li>
                   </ul>
                 </div>
                 <div>
                   <p className="text-[#64b5f6] font-bold mb-1">【關於 2026】</p>
                   <ul className="list-decimal list-inside space-y-1 pl-1">
-                    <li>給「歐劍諮商所」還有自己的一句話</li>
-                    <li>對 2026 有甚麼期待</li>
-                    <li>明年十周年的特別活動想法</li>
+                    <li>給「歐劍諮商所」的一句話</li>
+                    <li>對 2026 的「歐劍諮商所」有甚麼期待</li>
+                    <li>明年就是第四屆期初社大的十周年了，有甚麼特別想做的活動嗎</li>
                   </ul>
                 </div>
              </div>
