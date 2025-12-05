@@ -910,7 +910,7 @@ export default function App() {
         )}
 
         <audio ref={audioRef} loop>
-             <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg" />
+             <source src="/bgm.mp3"/>
         </audio>
 
       </div>
