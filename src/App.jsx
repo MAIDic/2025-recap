@@ -82,13 +82,13 @@ const SLIDES_DATA = [
     subtitle: '吃是我們最重要的儀式感',
     bgColor: 'from-red-900 via-rose-900 to-black',
     items: [
-      { date: '1/15 18:30', title: '📍 好時多涮涮鍋', desc: '駱彤生日慶生，送一堆蝦子根本吃不完', image: null }, 
-      { date: '1/27 19:00', title: '📍 和牛涮', desc: '俞祥約歐劍大聚餐，教練、師母也來了!', image: null },
-      { date: '3/9 12:30', title: '📍 1010 湘餐廳', desc: '攝影展當天的午餐聚會', image: null },
-      { date: '3/31 13:00', title: '📍 CityLink 港式飲茶', desc: '到南港慶祝秉琛離職', image: null },
-      { date: '5/15 18:45', title: '📍 六品小館', desc: '張適生日，吃完到張適家聊天小坐', image: null },
-      { date: '7/16 19:15', title: '📍 岡心食堂', desc: '慶祝秉琛生日，吃完還去參觀無限城', image: null },
-      { date: '8/11 12:00', title: '📍 史坦利美式牛排', desc: '慶祝秉琛新工作上工', image: null }
+      { date: '1/15', title: '📍 好時多涮涮鍋', desc: '駱彤生日慶生，送一堆蝦子根本吃不完', image: null }, 
+      { date: '1/27', title: '📍 和牛涮', desc: '俞祥約歐劍大聚餐，教練、師母也來了!', image: null },
+      { date: '3/9', title: '📍 1010 湘餐廳', desc: '攝影展當天的午餐聚會', image: null },
+      { date: '3/31', title: '📍 CityLink 港式飲茶', desc: '到南港慶祝秉琛離職', image: null },
+      { date: '5/15', title: '📍 六品小館', desc: '張適生日，吃完到張適家聊天小坐', image: null },
+      { date: '7/16', title: '📍 岡心食堂', desc: '慶祝秉琛生日，吃完還去參觀無限城', image: null },
+      { date: '8/11', title: '📍 史坦利美式牛排', desc: '慶祝秉琛新工作上工', image: null }
     ]
   },
   {
@@ -96,26 +96,33 @@ const SLIDES_DATA = [
     title: '🗺️ 年度共同回憶',
     bgColor: 'from-pink-900 via-purple-900 to-black',
     items: [
-      { month: '3月 14:00', title: '信義區攝影企劃', desc: '駱彤帽子大王 vs 秉琛推箱子服務', icon: 'camera', image: null }, 
-      { month: '5月 10:30', title: '秉琛家包粽子', desc: '體驗南部粽製作、蹭好料', icon: 'star', image: null },
-      { month: '7月 16:20', title: '宜蘭兩天一夜', desc: '羅東夜市、梅花湖。確立了「鬆散隨緣」的旅行風格', icon: 'map', image: null },
-      { month: '10月 19:00', title: '六福村萬聖節', desc: '墓碑鎮遊行，芮妮恐怖又可愛<3', icon: 'ghost', image: null },
-      { month: '10月 15:45', title: '秉琛戲劇成發', desc: '全員到齊支持，專業錄影攝影', icon: 'video', image: null }
+      { date: '3/9', title: '信義區攝影企劃', desc: '駱彤帽子大王 vs 秉琛推箱子服務', icon: 'camera', image: null }, 
+      { date: '5/30', title: '秉琛家包粽子', desc: '體驗南部粽製作、蹭好料', icon: 'star', image: null },
+      { date: '7/12', title: '宜蘭兩天一夜', desc: '羅東夜市、梅花湖。確立了「鬆散隨緣」的旅行風格', icon: 'map', image: null },
+      { date: '10/5', title: '六福村萬聖節', desc: '墓碑鎮遊行，芮妮恐怖又可愛<3', icon: 'ghost', image: null },
+      { date: '10/23', title: '秉琛戲劇成發', desc: '全員到齊支持，專業錄影攝影', icon: 'video', image: null }
     ]
   },
   {
     type: 'keywords',
-    duration: 12000,
+    // duration 在此處僅為參考，實際由 App 邏輯控制 (每句2.5s)
     title: '這一年的我們，都在說什麼？',
     bgColor: 'from-gray-800 via-slate-900 to-black',
     image: null,
     cloud: ['無限城', '照片', '無慘', '琵琶女', '所長', '研究所', '推甄', '覺察', '寶可夢','家庭','今天','情緒','學長'],
     quotes: [
-      '「我們歐劍諮商所可是成立了N年ㄋ！」 —— 張適',
-      '「咕嚕咕嚕」 —— 群組全員',
-      '「駱彤不嘻嘻」 —— 駱彤',
-      '「我是紙糊的，下水會爛掉」 —— 駱彤',
-      '「好想離職」 —— 駱彤、秉琛'
+      { text: '「朋友離職撐下去的理由又少一個」', author: '徐秉琛', time: '2024/12/6 15:18' },
+      { text: '「現代人太需要可愛療癒物了」', author: '張 適📷🌎', time: '2024/12/10 09:52' },
+      { text: '「我喜歡錢」', author: '駱彤', time: '2025/3/9 00:31' },
+      { text: '「離職治百病」', author: '徐秉琛', time: '2025/3/28 17:41' },
+      { text: '「好像路上的人來來去去的，只有我一個人不知道自己要去哪裡」', author: '駱彤', time: '2025/5/24 00:27' },
+      { text: '「世界終於瘋成我喜歡的樣子了」', author: '徐秉琛', time: '2025/7/29 16:29' },
+      { text: '「我們歐劍諮商所可是成立了N年ㄋ！」', author: '張適', time: '2025/9/1（週一）12:35' },
+      { text: '「上班之後最缺的就是時間」', author: '徐秉琛', time: '2025/9/17 08:31' },
+      { text: '「沒有人想上班」', author: '徐秉琛', time: '2025/9/26 22:02' },
+      { text: '「我現在根本就沒有餘力照顧別人」', author: '駱彤', time: '2025/10/10 16:45' },
+      { text: '「駱彤不嘻嘻」', author: '駱彤', time: '2025/10/27（週一）20:43' },
+      { text: '「在迷茫中還是做了很多挑戰 也是一種能力歐」', author: '張 適📷🌎', time: '2025/11/25 14:22' }
     ]
   },
   {
@@ -463,7 +470,7 @@ const MemoryStorySlide = ({ data, subIndex }) => {
               {/* LINE Style Date Center Badge */}
               <div className="flex justify-center mb-2">
                 <span className="bg-gray-900/50 text-gray-400 text-[10px] px-2 py-0.5 rounded-full border border-gray-800">
-                  {item.month}
+                  {item.date}
                 </span>
               </div>
 
@@ -503,15 +510,17 @@ const MemoryStorySlide = ({ data, subIndex }) => {
   );
 };
 
-const KeywordCloudSlide = ({ data }) => {
-  const [currentQuoteIndex, setCurrentQuoteIndex] = useState(0);
+// 修改：接收 subIndex 作為 props
+const KeywordCloudSlide = ({ data, subIndex }) => {
+  // 使用 subIndex 作為顯示進度
+  const currentQuoteIndex = subIndex; 
 
   const cloudWords = useMemo(() => {
     return data.cloud.map((word, idx) => ({
       text: word,
       style: {
-        top: `${Math.random() * 50 + 25}%`, // 集中在 25%~75% 高度
-        left: `${Math.random() * 50 + 25}%`, // 集中在 25%~75% 寬度
+        top: `${Math.random() * 50 + 25}%`, 
+        left: `${Math.random() * 50 + 25}%`,
         fontSize: `${Math.random() * 1.2 + 0.8}rem`,
         animationDelay: `${idx * 0.5}s`,
         animationDuration: `${Math.random() * 5 + 5}s`,
@@ -520,23 +529,9 @@ const KeywordCloudSlide = ({ data }) => {
     }));
   }, [data.cloud]);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      // 邏輯修改：我們不再循環切換顯示單一金句，而是讓 currentQuoteIndex 增加，
-      // 以便渲染出列表中的更多金句 (堆疊顯示)
-      setCurrentQuoteIndex(prev => {
-        if (prev < data.quotes.length - 1) {
-          return prev + 1;
-        }
-        return prev; // 停在最後一個，或者如果您希望循環顯示也可以，但"不要消失"通常意味著堆疊
-      });
-    }, 2500); // 每 2.5 秒顯示下一句
-    return () => clearInterval(interval);
-  }, [data.quotes.length]);
-
   return (
     <ChatLayout title={data.title}>
-      {/* Background Cloud (Absolute within Chat Content) */}
+      {/* Background Cloud */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-60">
          {cloudWords.map((item, idx) => (
             <span 
@@ -549,32 +544,31 @@ const KeywordCloudSlide = ({ data }) => {
          ))}
       </div>
 
-      {/* Quote Message Stream (Stacking up) */}
+      {/* Quote Message Stream */}
       <div className="flex flex-col h-full justify-end relative z-10 space-y-4">
          {data.quotes.map((quote, idx) => {
-            // 只顯示到目前的 index
+            // 只顯示到目前的 subIndex
             if (idx > currentQuoteIndex) return null;
 
-            const quoteParts = quote.split('——');
-            const quoteText = quoteParts[0];
-            const quoteAuthor = quoteParts[1] ? quoteParts[1].trim() : '';
-
             return (
-              <div key={idx} className="flex gap-3 items-end animate-fade-in-up">
-                  <div className="w-8 h-8 rounded-full bg-purple-600 flex items-center justify-center text-white shrink-0 text-xs font-bold">
-                    {quoteAuthor ? quoteAuthor[0] : 'Q'}
+              <div key={idx} className="flex gap-3 items-end animate-fade-in-up mb-4">
+                  <div className="w-8 h-8 rounded-full bg-purple-600 flex items-center justify-center text-white shrink-0 text-xs font-bold overflow-hidden">
+                    {quote.author ? quote.author[0] : 'Q'}
                   </div>
                   <div className="max-w-[85%] flex flex-col gap-1">
-                    <span className="text-xs text-gray-400 ml-1">{quoteAuthor || 'Unknown'}</span>
-                    <div className="bg-[#2b2b2b] px-4 py-3 rounded-2xl rounded-bl-none text-white border border-gray-700 shadow-lg">
-                        <p className="text-lg font-medium">{quoteText}</p>
+                    <span className="text-xs text-gray-400 ml-1 flex items-center gap-2">
+                      {quote.author}
+                    </span>
+                    <div className="bg-[#2b2b2b] px-4 py-3 rounded-2xl rounded-bl-none text-white border border-gray-700 shadow-lg relative group">
+                        <p className="text-lg font-medium">{quote.text}</p>
+                        <div className="text-[10px] text-gray-500 text-right mt-1">{quote.time}</div>
                     </div>
                   </div>
               </div>
             );
          })}
          
-         {/* Fake typing indicator (只有當還有金句沒顯示時才出現) */}
+         {/* Fake typing indicator */}
          {currentQuoteIndex < data.quotes.length - 1 && (
            <div className="h-6 ml-12 text-xs text-gray-500 flex items-center gap-1">
               <span className="w-1 h-1 bg-gray-500 rounded-full animate-bounce"></span>
@@ -589,8 +583,6 @@ const KeywordCloudSlide = ({ data }) => {
 
 const AwardsSlide = ({ data, subIndex }) => {
   const items = data.items;
-  const safeIndex = subIndex >= items.length ? 0 : subIndex;
-  const currentItem = items[safeIndex];
 
   return (
     <ChatLayout title={data.title}>
@@ -600,37 +592,48 @@ const AwardsSlide = ({ data, subIndex }) => {
         </span>
       </div>
 
-      <div className="flex flex-col items-center justify-center h-full pb-20">
-        {/* Award Card as a "System Red Envelope/Gift" Message */}
-        <div key={safeIndex} className="w-full max-w-sm animate-zoom-in-up">
-           <div className="bg-[#b45309] rounded-2xl overflow-hidden shadow-2xl border border-yellow-600/50">
-              {/* Header */}
-              <div className="bg-gradient-to-r from-yellow-600 to-yellow-500 p-6 text-center text-white relative">
-                 <Sparkles className="absolute top-2 left-2 text-yellow-200 opacity-50 animate-pulse" />
-                 <Sparkles className="absolute bottom-2 right-2 text-yellow-200 opacity-50 animate-pulse delay-700" />
-                 <Award className="w-12 h-12 mx-auto mb-2 text-white drop-shadow-md" />
-                 <h3 className="text-xl font-bold drop-shadow-sm">{currentItem.award}</h3>
-              </div>
-              
-              {/* Body */}
-              <div className="p-5 bg-[#2b2b2b] text-center">
-                 <p className="text-gray-400 text-xs mb-1">獲獎者</p>
-                 <p className="text-2xl font-bold text-white mb-4">{currentItem.winner}</p>
-                 
-                 <div className="text-left bg-black/30 p-3 rounded-lg mb-3">
-                   <p className="text-yellow-500 text-xs font-bold mb-1">頒獎詞</p>
-                   <p className="text-gray-300 text-sm leading-relaxed">{currentItem.reason}</p>
-                 </div>
+      <div className="flex flex-col gap-6">
+        {items.map((item, idx) => {
+          if (idx > subIndex && subIndex < items.length) return null;
 
-                 <div className="text-left bg-black/30 p-3 rounded-lg">
-                   <p className="text-yellow-500 text-xs font-bold mb-1">經典時刻</p>
-                   <p className="text-gray-300 text-sm leading-relaxed">{currentItem.moment}</p>
-                 </div>
-              </div>
-              
-              {/* Footer Removed based on request */}
-           </div>
-        </div>
+          return (
+            <div key={idx} className="animate-zoom-in-up w-full max-w-sm mx-auto">
+               <div className="bg-[#b45309] rounded-2xl overflow-hidden shadow-2xl border border-yellow-600/50">
+                  {/* Header */}
+                  <div className="bg-gradient-to-r from-yellow-600 to-yellow-500 p-4 text-center text-white relative">
+                     <Sparkles className="absolute top-2 left-2 text-yellow-200 opacity-50 animate-pulse" />
+                     <Sparkles className="absolute bottom-2 right-2 text-yellow-200 opacity-50 animate-pulse delay-700" />
+                     <Award className="w-8 h-8 mx-auto mb-1 text-white drop-shadow-md" />
+                     <h3 className="text-lg font-bold drop-shadow-sm">{item.award}</h3>
+                  </div>
+                  
+                  {/* Body */}
+                  <div className="p-4 bg-[#2b2b2b] text-center">
+                     <p className="text-gray-400 text-xs mb-1">獲獎者</p>
+                     <p className="text-xl font-bold text-white mb-3">{item.winner}</p>
+                     
+                     <div className="text-left bg-black/30 p-3 rounded-lg mb-2">
+                       <p className="text-yellow-500 text-xs font-bold mb-1">頒獎詞</p>
+                       <p className="text-gray-300 text-xs leading-relaxed">{item.reason}</p>
+                     </div>
+
+                     <div className="text-left bg-black/30 p-3 rounded-lg">
+                       <p className="text-yellow-500 text-xs font-bold mb-1">經典時刻</p>
+                       <p className="text-gray-300 text-xs leading-relaxed">{item.moment}</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+          );
+        })}
+        
+        {subIndex >= items.length && (
+          <div className="flex justify-center mt-4 animate-fade-in">
+             <div className="bg-gray-800/80 px-4 py-2 rounded-full text-xs text-gray-300 flex items-center gap-2">
+               <Check size={12} /> 頒獎典禮圓滿結束
+             </div>
+          </div>
+        )}
       </div>
     </ChatLayout>
   );
@@ -744,8 +747,9 @@ export default function App() {
   const totalSlides = SLIDES_DATA.length;
   const currentData = SLIDES_DATA[currentSlide];
 
-  // 判斷當前是否為封面
+  // 判斷當前是否為封面或互動頁面
   const isCover = currentSlide === 0;
+  const isInteractive = currentData.type === 'interactive';
 
   useEffect(() => {
     setSubSlideIndex(0);
@@ -754,6 +758,10 @@ export default function App() {
   const getCurrentStepDuration = () => {
     if (currentData.type === 'food-story' || currentData.type === 'memory-story') {
       return subSlideIndex < currentData.items.length ? 1000 : 10000;
+    }
+    // 修改：關鍵字雲改為 2.5s (自動播放)
+    if (currentData.type === 'keywords') {
+      return 2500;
     }
     if (currentData.type === 'awards') {
       return 5000;
@@ -779,6 +787,9 @@ export default function App() {
       maxSubSteps = currentData.items.length; 
     } else if (currentData.type === 'awards') {
       maxSubSteps = currentData.items.length - 1;
+    } else if (currentData.type === 'keywords') {
+      // 修改：關鍵字雲的步數為金句數量
+      maxSubSteps = currentData.quotes.length - 1;
     }
 
     if (subSlideIndex < maxSubSteps) {
@@ -848,15 +859,15 @@ export default function App() {
       <div className="fixed inset-0 md:relative md:w-full md:max-w-md md:h-[850px] md:inset-auto md:rounded-3xl overflow-hidden shadow-2xl bg-black">
         
         {/* 背景漸層與動畫 */}
-        {!isCover && currentData.type !== 'member' && currentData.type !== 'interactive' && (
+        {!isCover && currentData.type !== 'member' && !isInteractive && (
            <div className={`absolute inset-0 bg-gradient-to-br ${currentData.bgColor} transition-colors duration-1000 ease-in-out animate-gradient-move`}></div>
         )}
         
         {/* 漂浮粒子 */}
-        {!isCover && currentData.type !== 'member' && currentData.type !== 'interactive' && <FloatingParticles />}
+        {!isCover && currentData.type !== 'member' && !isInteractive && <FloatingParticles />}
 
-        {/* 只有在非 Cover 頁面才顯示進度條 */}
-        {!isCover && (
+        {/* 只有在非 Cover 且非 Interactive 頁面才顯示進度條 */}
+        {!isCover && !isInteractive && (
           <ProgressBar 
             count={totalSlides} 
             current={currentSlide} 
@@ -876,8 +887,8 @@ export default function App() {
           {renderSlideContent()}
         </div>
 
-        {/* 只有在非 Cover 頁面才顯示左右導航點擊區 */}
-        {!isCover && (
+        {/* 只有在非 Cover 且非 Interactive 頁面才顯示左右導航點擊區 */}
+        {!isCover && !isInteractive && (
           <div 
             className="absolute inset-0 z-20 flex"
             onTouchStart={handlePause}
