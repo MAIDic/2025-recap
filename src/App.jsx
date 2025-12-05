@@ -105,12 +105,11 @@ const SLIDES_DATA = [
   },
   {
     type: 'keywords',
-    // duration 在此處僅為參考，實際由 App 邏輯控制 (每句2.5s)
+    duration: 35000, 
     title: '這一年的我們，都在說什麼？',
     bgColor: 'from-gray-800 via-slate-900 to-black',
     image: null,
     cloud: ['無限城', '照片', '無慘', '琵琶女', '所長', '研究所', '推甄', '覺察', '寶可夢','家庭','今天','情緒','學長'],
-    // 金句改為物件陣列，依時間排序
     quotes: [
       { text: '「朋友離職撐下去的理由又少一個」', author: '徐秉琛', time: '2024/12/6 15:18' },
       { text: '「現代人太需要可愛療癒物了」', author: '張 適📷🌎', time: '2024/12/10 09:52' },
@@ -231,8 +230,7 @@ const ChatLayout = ({ title, children, showInput = true }) => {
   return (
     <div className="flex flex-col h-full relative z-10 bg-[#1e1e1e] font-sans">
       {/* Header */}
-      {/* 修改：移除 mt-6，保留 pt-safe，讓標題列正確頂到螢幕最上方，且內容避開劉海 */}
-      <div className="h-16 bg-[#2b2b2b]/90 backdrop-blur-md flex items-center justify-between px-4 border-b border-gray-700 pt-safe z-30 shrink-0 box-content">
+      <div className="h-16 bg-[#2b2b2b]/90 backdrop-blur-md flex items-center justify-between px-4 border-b border-gray-700 pt-safe mt-6 md:mt-0 z-30 shrink-0">
         <div className="flex items-center gap-3">
           <ArrowLeft className="text-white w-6 h-6" />
           <div>
@@ -530,6 +528,14 @@ const KeywordCloudSlide = ({ data, subIndex }) => {
     }));
   }, [data.cloud]);
 
+  // 修改：根據作者回傳不同顏色
+  const getAvatarColor = (author) => {
+    if (author.includes('駱彤')) return 'bg-yellow-600';
+    if (author.includes('徐秉琛')) return 'bg-blue-600';
+    if (author.includes('張')) return 'bg-green-600';
+    return 'bg-purple-600';
+  };
+
   return (
     <ChatLayout title={data.title}>
       {/* Background Cloud */}
@@ -553,7 +559,8 @@ const KeywordCloudSlide = ({ data, subIndex }) => {
 
             return (
               <div key={idx} className="flex gap-3 items-end animate-fade-in-up mb-4">
-                  <div className="w-8 h-8 rounded-full bg-purple-600 flex items-center justify-center text-white shrink-0 text-xs font-bold overflow-hidden">
+                  {/* 使用動態顏色 */}
+                  <div className={`w-8 h-8 rounded-full ${getAvatarColor(quote.author)} flex items-center justify-center text-white shrink-0 text-xs font-bold overflow-hidden`}>
                     {quote.author ? quote.author[0] : 'Q'}
                   </div>
                   <div className="max-w-[85%] flex flex-col gap-1">
