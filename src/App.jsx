@@ -7,7 +7,7 @@ import {
   Image as ImageIcon, Mic, Sticker, Smile
 } from 'lucide-react';
 
-// --- 資料內容設定 (在此處修改文字與圖片) ---
+// --- 資料內容設定 ---
 
 const SLIDES_DATA = [
   {
@@ -82,13 +82,13 @@ const SLIDES_DATA = [
     subtitle: '吃是我們最重要的儀式感',
     bgColor: 'from-red-900 via-rose-900 to-black',
     items: [
-      { date: '📅 1/15', title: '📍 好時多涮涮鍋', desc: '駱彤生日慶生，送一堆蝦子根本吃不完', image: null }, 
-      { date: '📅 1/27', title: '📍 和牛涮', desc: '俞祥約歐劍大聚餐，教練、師母也來了!', image: null },
-      { date: '📅 3/9', title: '📍 1010 湘餐廳', desc: '攝影展當天的午餐聚會', image: null },
-      { date: '📅 3/31', title: '📍 CityLink 港式飲茶', desc: '到南港慶祝秉琛離職', image: null },
-      { date: '📅 5/15', title: '📍 六品小館', desc: '張適生日，吃完到張適家聊天小坐', image: null },
-      { date: '📅 7/16', title: '📍 岡心食堂', desc: '慶祝秉琛生日，吃完還去參觀無限城', image: null },
-      { date: '📅 8/11', title: '📍 史坦利美式牛排', desc: '慶祝秉琛新工作上工', image: null }
+      { date: '1/15 18:30', title: '📍 好時多涮涮鍋', desc: '駱彤生日慶生，送一堆蝦子根本吃不完', image: null }, 
+      { date: '1/27 19:00', title: '📍 和牛涮', desc: '俞祥約歐劍大聚餐，教練、師母也來了!', image: null },
+      { date: '3/9 12:30', title: '📍 1010 湘餐廳', desc: '攝影展當天的午餐聚會', image: null },
+      { date: '3/31 13:00', title: '📍 CityLink 港式飲茶', desc: '到南港慶祝秉琛離職', image: null },
+      { date: '5/15 18:45', title: '📍 六品小館', desc: '張適生日，吃完到張適家聊天小坐', image: null },
+      { date: '7/16 19:15', title: '📍 岡心食堂', desc: '慶祝秉琛生日，吃完還去參觀無限城', image: null },
+      { date: '8/11 12:00', title: '📍 史坦利美式牛排', desc: '慶祝秉琛新工作上工', image: null }
     ]
   },
   {
@@ -96,11 +96,11 @@ const SLIDES_DATA = [
     title: '🗺️ 年度共同回憶',
     bgColor: 'from-pink-900 via-purple-900 to-black',
     items: [
-      { month: '3月', title: '信義區攝影企劃', desc: '駱彤帽子大王 vs 秉琛推箱子服務', icon: 'camera', image: null }, 
-      { month: '5月', title: '秉琛家包粽子', desc: '體驗南部粽製作、蹭好料', icon: 'star', image: null },
-      { month: '7月', title: '宜蘭兩天一夜', desc: '羅東夜市、梅花湖。確立了「鬆散隨緣」的旅行風格', icon: 'map', image: null },
-      { month: '10月', title: '六福村萬聖節', desc: '墓碑鎮遊行，芮妮恐怖又可愛<3', icon: 'ghost', image: null },
-      { month: '10月', title: '秉琛戲劇成發', desc: '全員到齊支持，專業錄影攝影', icon: 'video', image: null }
+      { month: '3月 14:00', title: '信義區攝影企劃', desc: '駱彤帽子大王 vs 秉琛推箱子服務', icon: 'camera', image: null }, 
+      { month: '5月 10:30', title: '秉琛家包粽子', desc: '體驗南部粽製作、蹭好料', icon: 'star', image: null },
+      { month: '7月 16:20', title: '宜蘭兩天一夜', desc: '羅東夜市、梅花湖。確立了「鬆散隨緣」的旅行風格', icon: 'map', image: null },
+      { month: '10月 19:00', title: '六福村萬聖節', desc: '墓碑鎮遊行，芮妮恐怖又可愛<3', icon: 'ghost', image: null },
+      { month: '10月 15:45', title: '秉琛戲劇成發', desc: '全員到齊支持，專業錄影攝影', icon: 'video', image: null }
     ]
   },
   {
@@ -159,7 +159,6 @@ const SLIDES_DATA = [
 
 // --- 共用組件 ---
 
-// 確保 FloatingParticles 在 App 之前定義
 const FloatingParticles = () => {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
@@ -212,6 +211,15 @@ const ProgressBar = ({ count, current, isPaused, currentDuration }) => {
 
 // --- 共用 Chat Layout (模擬通訊軟體外框) ---
 const ChatLayout = ({ title, children, showInput = true }) => {
+  const scrollRef = useRef(null);
+
+  // 當 children (內容) 改變時，自動捲動到底部
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
+  });
+
   return (
     <div className="flex flex-col h-full relative z-10 bg-[#1e1e1e] font-sans">
       {/* Header */}
@@ -232,8 +240,7 @@ const ChatLayout = ({ title, children, showInput = true }) => {
       </div>
 
       {/* Content Area (Chat Messages) */}
-      <div className="flex-1 overflow-y-auto bg-gray-900/50 relative">
-        {/* Removed the dot pattern background div here */}
+      <div className="flex-1 overflow-y-auto bg-gray-900/50 relative" ref={scrollRef}>
         <div className="p-4 pb-24 min-h-full">
           {children}
         </div>
@@ -268,28 +275,42 @@ const CoverSlide = ({ data, onNext }) => (
         </span>
       </div>
 
-      {/* Intro Message */}
+      {/* Message 1: Keywords */}
       <div className="flex gap-2 items-end animate-fade-in-up">
-        <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-xs font-bold text-white">Sys</div>
-        <div className="max-w-[85%] bg-[#2b2b2b] p-3 rounded-2xl rounded-bl-none text-white border border-gray-700">
-          <p className="font-bold mb-2 text-[#64b5f6]">{data.subtitle}</p>
-          <ImagePlaceholder src={data.image} height="h-40" className="rounded-lg mb-2" />
-          <p className="text-sm leading-relaxed">{data.description}</p>
-          <div className="flex flex-wrap gap-2 mt-3">
+        <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-xs font-bold text-white shrink-0">Sys</div>
+        <div className="bg-[#2b2b2b] p-3 rounded-2xl rounded-bl-none text-white border border-gray-700 max-w-[80%]">
+          <p className="font-bold text-[#64b5f6] mb-2 text-sm">年度關鍵字</p>
+          <div className="flex flex-wrap gap-2">
             {data.keywords.map((kw, i) => (
               <span key={i} className="text-xs bg-blue-500/20 text-blue-300 px-2 py-1 rounded">#{kw}</span>
             ))}
           </div>
+        </div>
+      </div>
+
+      {/* Message 2: Image */}
+      <div className="flex gap-2 items-end animate-fade-in-up" style={{ animationDelay: '200ms' }}>
+        <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-xs font-bold text-white shrink-0">Sys</div>
+        <div className="max-w-[70%]">
+           <ImagePlaceholder src={data.image} height="h-48" className="rounded-xl border border-gray-700 !mb-0" />
+        </div>
+      </div>
+
+      {/* Message 3: Description */}
+      <div className="flex gap-2 items-end animate-fade-in-up" style={{ animationDelay: '400ms' }}>
+        <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-xs font-bold text-white shrink-0">Sys</div>
+        <div className="bg-[#2b2b2b] p-3 rounded-2xl rounded-bl-none text-white border border-gray-700 max-w-[85%] text-sm leading-relaxed">
+          {data.description}
           <div className="text-[10px] text-gray-500 text-right mt-1">10:00 AM</div>
         </div>
       </div>
     </div>
 
     {/* Enter Button */}
-    <div className="mt-8 flex justify-center">
+    <div className="mt-8 flex justify-center pb-8">
        <button 
          onClick={(e) => { e.stopPropagation(); onNext(); }}
-         className="bg-[#00a884] hover:bg-[#008f6f] text-black font-bold py-3 px-8 rounded-full flex items-center gap-2 shadow-lg transition-transform active:scale-95"
+         className="bg-[#00a884] hover:bg-[#008f6f] text-black font-bold py-3 px-8 rounded-full flex items-center gap-2 shadow-lg transition-transform active:scale-95 border border-[#00a884]"
        >
          進入群組回顧 <ChevronRight className="w-5 h-5" />
        </button>
@@ -380,23 +401,29 @@ const FoodStorySlide = ({ data, subIndex }) => {
           if (idx > subIndex && subIndex < items.length) return null;
           
           return (
-            <div key={idx} className="animate-fade-in-up flex gap-3 items-end group">
-              <div className="w-8 h-8 rounded-full bg-yellow-600 flex items-center justify-center text-xs text-white shrink-0">
-                <Utensils size={14} />
+            <div key={idx} className="animate-fade-in-up flex flex-col gap-1 w-full">
+              {/* LINE Style Date Center Badge */}
+              <div className="flex justify-center mb-2">
+                <span className="bg-gray-900/50 text-gray-400 text-[10px] px-2 py-0.5 rounded-full border border-gray-800">
+                  {item.date}
+                </span>
               </div>
-              <div className="max-w-[80%] flex flex-col gap-1">
-                <span className="text-xs text-gray-400 ml-1">Member</span>
-                <div className="bg-[#2b2b2b] p-2 rounded-2xl rounded-bl-none border border-gray-700 overflow-hidden">
-                   <div className="relative">
-                     <ImagePlaceholder src={item.image} height="h-48" className="rounded-lg w-full" />
-                     <div className="absolute top-2 left-2 bg-black/60 px-2 py-1 rounded text-xs text-white backdrop-blur-sm">
-                       {item.date}
-                     </div>
-                   </div>
-                   <div className="mt-2 px-1 pb-1">
-                     <h3 className="font-bold text-white text-base">{item.title}</h3>
-                     <p className="text-gray-400 text-sm mt-1">{item.desc}</p>
-                   </div>
+
+              <div className="flex gap-3 items-end group w-full">
+                <div className="w-8 h-8 rounded-full bg-yellow-600 flex items-center justify-center text-xs text-white shrink-0">
+                  <Utensils size={14} />
+                </div>
+                <div className="max-w-[80%] flex flex-col gap-1">
+                  <span className="text-xs text-gray-400 ml-1">Member</span>
+                  <div className="bg-[#2b2b2b] p-2 rounded-2xl rounded-bl-none border border-gray-700 overflow-hidden">
+                    <div className="relative">
+                      <ImagePlaceholder src={item.image} height="h-48" className="rounded-lg w-full" />
+                    </div>
+                    <div className="mt-2 px-1 pb-1">
+                      <h3 className="font-bold text-white text-base">{item.title}</h3>
+                      <p className="text-gray-400 text-sm mt-1">{item.desc}</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -432,24 +459,32 @@ const MemoryStorySlide = ({ data, subIndex }) => {
           if (idx > subIndex && subIndex < items.length) return null;
 
           return (
-            <div key={idx} className="animate-fade-in-up flex gap-3 items-end">
-              <div className="w-8 h-8 rounded-full bg-pink-600 flex items-center justify-center text-xs text-white shrink-0">
-                <Camera size={14} />
+            <div key={idx} className="animate-fade-in-up flex flex-col gap-1 w-full">
+              {/* LINE Style Date Center Badge */}
+              <div className="flex justify-center mb-2">
+                <span className="bg-gray-900/50 text-gray-400 text-[10px] px-2 py-0.5 rounded-full border border-gray-800">
+                  {item.month}
+                </span>
               </div>
-              <div className="max-w-[80%] flex flex-col gap-1">
-                <span className="text-xs text-gray-400 ml-1">Admin</span>
-                <div className="bg-[#2b2b2b] p-3 rounded-2xl rounded-bl-none border border-gray-700 relative overflow-hidden">
-                   {/* Polaroid Style Message */}
-                   <div className="bg-white p-2 pb-8 rounded shadow-lg transform rotate-1 hover:rotate-0 transition-transform duration-300">
-                      <ImagePlaceholder src={item.image} height="h-40" className="bg-gray-100" />
-                      <div className="mt-2 text-center">
-                        <p className="text-black font-bold font-serif text-sm">{item.title}</p>
-                      </div>
-                   </div>
-                   <div className="mt-3 text-sm text-gray-300">
-                     <span className="text-pink-400 font-bold text-xs mr-2">{item.month}</span>
-                     {item.desc}
-                   </div>
+
+              <div className="flex gap-3 items-end w-full">
+                <div className="w-8 h-8 rounded-full bg-pink-600 flex items-center justify-center text-xs text-white shrink-0">
+                  <Camera size={14} />
+                </div>
+                <div className="max-w-[80%] flex flex-col gap-1">
+                  <span className="text-xs text-gray-400 ml-1">Admin</span>
+                  <div className="bg-[#2b2b2b] p-3 rounded-2xl rounded-bl-none border border-gray-700 relative overflow-hidden">
+                    {/* Polaroid Style Message */}
+                    <div className="bg-white p-2 pb-8 rounded shadow-lg transform rotate-1 hover:rotate-0 transition-transform duration-300">
+                        <ImagePlaceholder src={item.image} height="h-40" className="bg-gray-100" />
+                        <div className="mt-2 text-center">
+                          <p className="text-black font-bold font-serif text-sm">{item.title}</p>
+                        </div>
+                    </div>
+                    <div className="mt-3 text-sm text-gray-300">
+                      {item.desc}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -487,15 +522,17 @@ const KeywordCloudSlide = ({ data }) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentQuoteIndex(prev => (prev + 1) % data.quotes.length);
-    }, 3000);
+      // 邏輯修改：我們不再循環切換顯示單一金句，而是讓 currentQuoteIndex 增加，
+      // 以便渲染出列表中的更多金句 (堆疊顯示)
+      setCurrentQuoteIndex(prev => {
+        if (prev < data.quotes.length - 1) {
+          return prev + 1;
+        }
+        return prev; // 停在最後一個，或者如果您希望循環顯示也可以，但"不要消失"通常意味著堆疊
+      });
+    }, 2500); // 每 2.5 秒顯示下一句
     return () => clearInterval(interval);
   }, [data.quotes.length]);
-
-  const currentQuote = data.quotes[currentQuoteIndex];
-  const quoteParts = currentQuote.split('——');
-  const quoteText = quoteParts[0];
-  const quoteAuthor = quoteParts[1] ? quoteParts[1].trim() : '';
 
   return (
     <ChatLayout title={data.title}>
@@ -512,25 +549,39 @@ const KeywordCloudSlide = ({ data }) => {
          ))}
       </div>
 
-      {/* Quote Message (At the bottom, looking like a new message) */}
-      <div className="flex flex-col h-full justify-end relative z-10">
-         <div className="flex gap-3 items-end animate-fade-in-up key={currentQuoteIndex}">
-            <div className="w-8 h-8 rounded-full bg-purple-600 flex items-center justify-center text-white shrink-0">
-               {quoteAuthor ? quoteAuthor[0] : 'Q'}
-            </div>
-            <div className="max-w-[85%] flex flex-col gap-1">
-               <span className="text-xs text-gray-400 ml-1">{quoteAuthor || 'Unknown'}</span>
-               <div className="bg-[#2b2b2b] px-4 py-3 rounded-2xl rounded-bl-none text-white border border-gray-700 shadow-lg">
-                  <p className="text-lg font-medium">{quoteText}</p>
-               </div>
-            </div>
-         </div>
-         {/* Fake typing indicator */}
-         <div className="h-6 mt-2 ml-12 text-xs text-gray-500 flex items-center gap-1">
-            <span className="w-1 h-1 bg-gray-500 rounded-full animate-bounce"></span>
-            <span className="w-1 h-1 bg-gray-500 rounded-full animate-bounce delay-100"></span>
-            <span className="w-1 h-1 bg-gray-500 rounded-full animate-bounce delay-200"></span>
-         </div>
+      {/* Quote Message Stream (Stacking up) */}
+      <div className="flex flex-col h-full justify-end relative z-10 space-y-4">
+         {data.quotes.map((quote, idx) => {
+            // 只顯示到目前的 index
+            if (idx > currentQuoteIndex) return null;
+
+            const quoteParts = quote.split('——');
+            const quoteText = quoteParts[0];
+            const quoteAuthor = quoteParts[1] ? quoteParts[1].trim() : '';
+
+            return (
+              <div key={idx} className="flex gap-3 items-end animate-fade-in-up">
+                  <div className="w-8 h-8 rounded-full bg-purple-600 flex items-center justify-center text-white shrink-0 text-xs font-bold">
+                    {quoteAuthor ? quoteAuthor[0] : 'Q'}
+                  </div>
+                  <div className="max-w-[85%] flex flex-col gap-1">
+                    <span className="text-xs text-gray-400 ml-1">{quoteAuthor || 'Unknown'}</span>
+                    <div className="bg-[#2b2b2b] px-4 py-3 rounded-2xl rounded-bl-none text-white border border-gray-700 shadow-lg">
+                        <p className="text-lg font-medium">{quoteText}</p>
+                    </div>
+                  </div>
+              </div>
+            );
+         })}
+         
+         {/* Fake typing indicator (只有當還有金句沒顯示時才出現) */}
+         {currentQuoteIndex < data.quotes.length - 1 && (
+           <div className="h-6 ml-12 text-xs text-gray-500 flex items-center gap-1">
+              <span className="w-1 h-1 bg-gray-500 rounded-full animate-bounce"></span>
+              <span className="w-1 h-1 bg-gray-500 rounded-full animate-bounce delay-100"></span>
+              <span className="w-1 h-1 bg-gray-500 rounded-full animate-bounce delay-200"></span>
+           </div>
+         )}
       </div>
     </ChatLayout>
   );
@@ -577,10 +628,7 @@ const AwardsSlide = ({ data, subIndex }) => {
                  </div>
               </div>
               
-              {/* Footer */}
-              <div className="bg-[#1e1e1e] p-3 text-center border-t border-gray-700">
-                 <span className="text-yellow-600 text-xs">查看詳情 &gt;</span>
-              </div>
+              {/* Footer Removed based on request */}
            </div>
         </div>
       </div>
@@ -696,6 +744,9 @@ export default function App() {
   const totalSlides = SLIDES_DATA.length;
   const currentData = SLIDES_DATA[currentSlide];
 
+  // 判斷當前是否為封面
+  const isCover = currentSlide === 0;
+
   useEffect(() => {
     setSubSlideIndex(0);
   }, [currentSlide]);
@@ -797,19 +848,22 @@ export default function App() {
       <div className="fixed inset-0 md:relative md:w-full md:max-w-md md:h-[850px] md:inset-auto md:rounded-3xl overflow-hidden shadow-2xl bg-black">
         
         {/* 背景漸層與動畫 */}
-        {currentData.type !== 'cover' && currentData.type !== 'member' && currentData.type !== 'interactive' && (
+        {!isCover && currentData.type !== 'member' && currentData.type !== 'interactive' && (
            <div className={`absolute inset-0 bg-gradient-to-br ${currentData.bgColor} transition-colors duration-1000 ease-in-out animate-gradient-move`}></div>
         )}
         
         {/* 漂浮粒子 */}
-        {currentData.type !== 'cover' && currentData.type !== 'member' && currentData.type !== 'interactive' && <FloatingParticles />}
+        {!isCover && currentData.type !== 'member' && currentData.type !== 'interactive' && <FloatingParticles />}
 
-        <ProgressBar 
-          count={totalSlides} 
-          current={currentSlide} 
-          isPaused={isPaused} 
-          currentDuration={getCurrentStepDuration()} 
-        />
+        {/* 只有在非 Cover 頁面才顯示進度條 */}
+        {!isCover && (
+          <ProgressBar 
+            count={totalSlides} 
+            current={currentSlide} 
+            isPaused={isPaused} 
+            currentDuration={getCurrentStepDuration()} 
+          />
+        )}
 
         <button 
              onClick={(e) => { e.stopPropagation(); togglePlay(); }}
@@ -822,16 +876,19 @@ export default function App() {
           {renderSlideContent()}
         </div>
 
-        <div 
-          className="absolute inset-0 z-20 flex"
-          onTouchStart={handlePause}
-          onTouchEnd={handleResume}
-          onMouseDown={handlePause}
-          onMouseUp={handleResume}
-        >
-          <div className="w-[30%] h-full" onClick={(e) => { e.stopPropagation(); handlePrev(); }}></div>
-          <div className="w-[70%] h-full" onClick={(e) => { e.stopPropagation(); handleNext(); }}></div>
-        </div>
+        {/* 只有在非 Cover 頁面才顯示左右導航點擊區 */}
+        {!isCover && (
+          <div 
+            className="absolute inset-0 z-20 flex"
+            onTouchStart={handlePause}
+            onTouchEnd={handleResume}
+            onMouseDown={handlePause}
+            onMouseUp={handleResume}
+          >
+            <div className="w-[30%] h-full" onClick={(e) => { e.stopPropagation(); handlePrev(); }}></div>
+            <div className="w-[70%] h-full" onClick={(e) => { e.stopPropagation(); handleNext(); }}></div>
+          </div>
+        )}
 
         <audio ref={audioRef} loop>
              <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg" />
